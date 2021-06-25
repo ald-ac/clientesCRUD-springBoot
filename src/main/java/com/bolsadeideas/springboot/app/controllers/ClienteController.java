@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
+import com.bolsadeideas.springboot.app.models.entity.Cliente;
 
 @Controller
 public class ClienteController {
@@ -22,5 +23,22 @@ public class ClienteController {
 		model.addAttribute("clientes", clienteDao.buscarTodo());
 		
 		return "listar";
+	}
+	
+	@RequestMapping(value = "/agregar", method = RequestMethod.GET)
+	public String agregar(Model model) {
+		
+		//Objeto mapeado a la BD y al formulario *bidireccional*
+		Cliente cliente = new Cliente();
+		model.addAttribute("cliente", cliente);
+		model.addAttribute("titulo", "Agregar nuevo cliente");
+		
+		return "form";
+	}
+	
+	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
+	public String guardar(Cliente cliente) {
+		clienteDao.agregar(cliente);
+		return "redirect:listar";
 	}
 }
