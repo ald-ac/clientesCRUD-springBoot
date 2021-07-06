@@ -35,19 +35,23 @@
 		<form th:action="@{/agregar}" th:object="${cliente}" method="post">
 			<div class="mb-3">
 				<label for="nombre" class="form-label">Nombre</label> 
-				<input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+				<input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorclass="'form-control alert-danger'">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 			</div>
 			<div class="mb-3">
 				<label for="apellido" class="form-label">Apellido</label> 
-				<input type="text" class="form-control" id="apellido" th:field="*{apellido}">
+				<input type="text" class="form-control" id="apellido" th:field="*{apellido}" th:errorclass="'form-control alert-danger'">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
 			</div>
 			<div class="mb-3">
 				<label for="email" class="form-label">Email</label> 
-				<input type="email" class="form-control" id="email" th:field="*{email}">
+				<input type="text" class="form-control" id="email" th:field="*{email}" th:errorclass="'form-control alert-danger'">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 			</div>
 			<div class="mb-3">
 				<label for="fecha" class="form-label">Fecha</label> 
-				<input type="date" class="form-control" id="fecha" th:field="*{creadoEn}">
+				<input type="date" class="form-control" id="fecha" th:field="*{creadoEn}" th:errorclass="'form-control alert-danger'">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('creadoEn')}" th:errors="*{creadoEn}"></small>
 			</div>
 			<button type="submit" class="btn btn-success">Agregar cliente</button>
 			<input type="hidden" class="form-control" th:field="*{id}">
