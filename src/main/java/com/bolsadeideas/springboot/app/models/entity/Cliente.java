@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
+//import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="clientes")
@@ -29,12 +31,13 @@ public class Cliente implements Serializable{
 	
 	@Column(name = "creado_en")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date creadoEn;
 	
-	@PrePersist
-	public void prePersist() { 
-		creadoEn = new Date();
-	}
+	//@PrePersist
+	//public void prePersist() { 
+	//	creadoEn = new Date();
+	//}
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
