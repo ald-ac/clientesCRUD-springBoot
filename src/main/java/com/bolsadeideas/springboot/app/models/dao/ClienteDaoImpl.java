@@ -30,4 +30,9 @@ public class ClienteDaoImpl implements IClienteDao {
 		em.persist(cliente);
 	}
 
+	@Transactional
+	@Override
+	public Cliente buscarCliente(long id) {
+		return em.find(Cliente.class, id);	
+	}
 }

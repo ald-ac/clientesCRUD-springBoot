@@ -9,4 +9,6 @@ public interface IClienteDao {
 	public List<Cliente> buscarTodo();
 	
 	public void agregar(Cliente cliente);
+	
+	public Cliente buscarCliente(long id);
 }
