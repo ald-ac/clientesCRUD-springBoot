@@ -53,7 +53,7 @@
 				<input type="date" class="form-control" id="fecha" th:field="*{creadoEn}" th:errorclass="'form-control alert-danger'">
 				<small class="form-text text-danger" th:if="${#fields.hasErrors('creadoEn')}" th:errors="*{creadoEn}"></small>
 			</div>
-			<button type="submit" class="btn btn-success">Agregar cliente</button>
+			<button type="submit" class="btn btn-success" th:text="${textoBoton}"></button>
 			<input type="hidden" class="form-control" th:field="*{id}">
 		</form>
 		

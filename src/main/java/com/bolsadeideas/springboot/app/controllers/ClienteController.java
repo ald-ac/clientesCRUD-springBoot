@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,7 @@ public class ClienteController {
 		Cliente cliente = new Cliente();
 		model.addAttribute("cliente", cliente);
 		model.addAttribute("titulo", "Agregar nuevo cliente");
+		model.addAttribute("textoBoton", "Agregar cliente");
 		
 		return "form";
 	}
@@ -47,6 +49,7 @@ public class ClienteController {
 			Cliente cliente = clienteDao.buscarCliente(id);
 			model.addAttribute("cliente", cliente);
 			model.addAttribute("titulo", "Editar cliente");
+			model.addAttribute("textoBoton", "Editar cliente");
 			return "form";
 		} else {
 			return "redirect:listar";
@@ -56,7 +59,14 @@ public class ClienteController {
 	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Agregar nuevo cliente");
+			//Verificar de donde se esta mandando formulario para titulo y btn
+			if(cliente.getId() != null) {
+				model.addAttribute("titulo", "Editar cliente");
+				model.addAttribute("textoBoton", "Editar cliente");
+			} else {
+				model.addAttribute("titulo", "Agregar nuevo cliente");
+				model.addAttribute("textoBoton", "Agregar cliente");
+			}
 			return "form";
 		}
 		
