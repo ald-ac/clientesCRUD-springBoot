@@ -40,7 +40,7 @@ public class ClienteController {
 		return "form";
 	}
 	
-	@RequestMapping(value = "/editar{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/editar/{id}", method = RequestMethod.GET)
 	public String editar(@PathVariable(name = "id") long id, Model model) {
 		//Validar id
 		if(id > 0) {
@@ -60,7 +60,7 @@ public class ClienteController {
 			return "form";
 		}
 		
-		clienteDao.agregar(cliente);
+		clienteDao.guardar(cliente);
 		return "redirect:listar";
 	}
 }
