@@ -24,10 +24,16 @@ public class ClienteDaoImpl implements IClienteDao {
 		return em.createQuery("from Cliente").getResultList();
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public Cliente buscarCliente(long id) {
+		return em.find(Cliente.class, id);	
+	}
+	
 	@Transactional
 	@Override
 	public void guardar(Cliente cliente) {
-		//Si ya existe un ID es una actualizacion, no insercion
+		//Si ya existe un ID es una actualizacion, si no insercion
 		if(cliente.getId() != null && cliente.getId() > 0) { 
 			em.merge(cliente);
 		} else {
@@ -37,7 +43,7 @@ public class ClienteDaoImpl implements IClienteDao {
 
 	@Transactional
 	@Override
-	public Cliente buscarCliente(long id) {
-		return em.find(Cliente.class, id);	
+	public void eliminar(long id) {
+		em.remove(buscarCliente(id));
 	}
 }

@@ -54,7 +54,7 @@ public class ClienteController {
 			model.addAttribute("textoBoton", "Editar cliente");
 			return "form";
 		} else {
-			return "redirect:listar";
+			return "redirect:/listar";
 		}
 	}
 	
@@ -66,6 +66,14 @@ public class ClienteController {
 		
 		clienteDao.guardar(cliente);
 		status.setComplete();
-		return "redirect:listar";
+		return "redirect:/listar";
+	}
+	
+	@RequestMapping(value = "/eliminar/{id}")
+	public String eliminar(@PathVariable(name = "id") long id) {
+		if(id > 0) {
+			clienteDao.eliminar(id);
+		}
+		return "redirect:/listar";
 	}
 }

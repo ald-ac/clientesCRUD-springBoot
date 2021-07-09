@@ -11,4 +11,6 @@ public interface IClienteDao {
 	public void guardar(Cliente cliente);
 	
 	public Cliente buscarCliente(long id);
+	
+	public void eliminar(long id);
 }

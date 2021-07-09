@@ -57,7 +57,8 @@
 						<a th:href="@{/editar/} + ${cliente.id}" class="btn btn-warning">Editar</a>
 					</td>
 					<td>
-						<a class="btn btn-danger">Eliminar</a>
+						<a th:href="@{/eliminar/} + ${cliente.id}" class="btn btn-danger" 
+						th:attr="onclick='return confirm(\'¿Realmente desea eliminar el cliente ' + ${cliente.nombre} + ' ' + ${cliente.apellido}  + '?\');'">Eliminar</a>
 					</td>
 				</tr>
 			</tbody>
