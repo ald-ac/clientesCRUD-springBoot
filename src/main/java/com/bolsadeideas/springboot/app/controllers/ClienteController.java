@@ -16,7 +16,7 @@ import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 
 @Controller
-@SessionAttributes("cliente")
+@SessionAttributes({"cliente", "titulo", "textoBoton"})
 public class ClienteController {
 
 	//Inyectar clase DAO para obtener clientes
@@ -34,7 +34,6 @@ public class ClienteController {
 	
 	@RequestMapping(value = "/agregar", method = RequestMethod.GET)
 	public String agregar(Model model) {
-		
 		//Objeto mapeado a la BD y al formulario *bidireccional*
 		Cliente cliente = new Cliente();
 		model.addAttribute("cliente", cliente);
@@ -61,14 +60,6 @@ public class ClienteController {
 	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
 		if(result.hasErrors()) {
-			//Verificar de donde se esta mandando formulario para titulo y btn
-			if(cliente.getId() != null) {
-				model.addAttribute("titulo", "Editar cliente");
-				model.addAttribute("textoBoton", "Editar cliente");
-			} else {
-				model.addAttribute("titulo", "Agregar nuevo cliente");
-				model.addAttribute("textoBoton", "Agregar cliente");
-			}
 			return "form";
 		}
 		
