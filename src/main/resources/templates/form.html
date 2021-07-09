@@ -32,7 +32,7 @@
 	<div class="container">
 		<h1 class="text-primary my-2" th:text="${titulo}"></h1>
 
-		<form th:action="@{/agregar}" th:object="${cliente}" method="post">
+		<form th:action="@{/guardar}" th:object="${cliente}" method="post">
 			<div class="mb-3">
 				<label for="nombre" class="form-label">Nombre</label> 
 				<input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorclass="'form-control alert-danger'">

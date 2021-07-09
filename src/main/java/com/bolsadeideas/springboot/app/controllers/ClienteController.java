@@ -34,6 +34,7 @@ public class ClienteController {
 	
 	@RequestMapping(value = "/agregar", method = RequestMethod.GET)
 	public String agregar(Model model) {
+		
 		//Objeto mapeado a la BD y al formulario *bidireccional*
 		Cliente cliente = new Cliente();
 		model.addAttribute("cliente", cliente);
@@ -57,7 +58,7 @@ public class ClienteController {
 		}
 	}
 	
-	@RequestMapping(value = "/agregar", method = RequestMethod.POST)
+	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
 		if(result.hasErrors()) {
 			return "form";
