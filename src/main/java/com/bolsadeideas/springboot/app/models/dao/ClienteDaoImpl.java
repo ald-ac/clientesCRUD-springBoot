@@ -17,20 +17,17 @@ public class ClienteDaoImpl implements IClienteDao {
 	private EntityManager em;
 	
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
 	@Override
 	public List<Cliente> buscarTodo() {
 		
 		return em.createQuery("from Cliente").getResultList();
 	}
 
-	@Transactional(readOnly = true)
 	@Override
 	public Cliente buscarCliente(long id) {
 		return em.find(Cliente.class, id);	
 	}
 	
-	@Transactional
 	@Override
 	public void guardar(Cliente cliente) {
 		//Si ya existe un ID es una actualizacion, si no insercion
