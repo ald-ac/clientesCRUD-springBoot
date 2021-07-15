@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bolsadeideas.springboot.app.crudRepo.IClienteDaoCrud;
 import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 
@@ -13,30 +14,30 @@ import com.bolsadeideas.springboot.app.models.entity.Cliente;
 public class ClienteServiceImpl implements IClienteService {
 
 	@Autowired
-	private IClienteDao clienteDao;
+	private IClienteDaoCrud clienteDao;
 	
 	@Transactional(readOnly = true)
 	@Override
 	public List<Cliente> buscarTodo() {
-		return clienteDao.buscarTodo();
+		return (List<Cliente>) clienteDao.findAll();
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public Cliente buscarCliente(long id) {
-		return clienteDao.buscarCliente(id);
+		return clienteDao.findById(id).orElse(null);
 	}
 	
 	@Transactional
 	@Override
 	public void guardar(Cliente cliente) {
-		clienteDao.guardar(cliente);
+		clienteDao.save(cliente);
 	}
 
 	@Transactional
 	@Override
 	public void eliminar(long id) {
-		clienteDao.eliminar(id);
+		clienteDao.deleteById(id);
 	}
 
 }
