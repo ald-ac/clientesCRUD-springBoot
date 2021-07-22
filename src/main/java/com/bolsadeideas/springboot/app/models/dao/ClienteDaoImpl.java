@@ -38,7 +38,6 @@ public class ClienteDaoImpl implements IClienteDao {
 		}
 	}
 
-	@Transactional
 	@Override
 	public void eliminar(long id) {
 		em.remove(buscarCliente(id));
